@@ -7,7 +7,7 @@ const birthdayConfig = {
   herName: "astha",
   yourName: "pratyush",
   birthday: "2026-08-09",          // YYYY-MM-DD
-  music: "assets/music/birthday-music.mp3"
+  music: "/birthday-music.mp3"
 };
 
 const personalMessage = `
@@ -31,44 +31,28 @@ const memories = [
   {
     date: "A quiet afternoon",
     title: "The first real conversation",
-    description: "Somewhere between ordinary days, you became someone extraordinary.",
-    image: "" // optional: "assets/images/memory1.jpg"
+    description: "Somewhere between ordinary days, you became someone extraordinary."
   },
   {
     date: "Late evening",
     title: "Shared silence",
-    description: "Not every moment needs words. Some just need the right person next to you.",
-    image: ""
+    description: "Not every moment needs words. Some just need the right person next to you."
   },
   {
     date: "A random Tuesday",
     title: "Unexpected laughter",
-    description: "You have a way of turning the smallest things into something worth remembering.",
-    image: ""
+    description: "You have a way of turning the smallest things into something worth remembering."
   },
   {
     date: "One of those days",
     title: "When it mattered",
-    description: "You showed up. That is rarer than people admit.",
-    image: ""
+    description: "You showed up. That is rarer than people admit."
   },
   {
     date: "Recently",
     title: "Still here",
-    description: "Grateful for the chapters that keep unfolding.",
-    image: ""
+    description: "Grateful for the chapters that keep unfolding."
   }
-];
-
-const gallery = [
-  { src: "assets/images/photo1.jpg", caption: "A moment worth keeping" },
-  { src: "assets/images/photo2.jpg", caption: "Soft light, quiet joy" },
-  { src: "assets/images/photo3.jpg", caption: "One of the good days" },
-  { src: "assets/images/photo4.jpg", caption: "Captured in between" },
-  { src: "assets/images/photo5.jpg", caption: "Something simple" },
-  { src: "assets/images/photo6.jpg", caption: "A shared glance" },
-  { src: "assets/images/photo7.jpg", caption: "Worth remembering" },
-  { src: "assets/images/photo8.jpg", caption: "This one stays" }
 ];
 
 const secretMessage = `
@@ -80,34 +64,28 @@ const secretMessage = `
 const finaleWish = "May this year give you more reasons to smile, more moments to remember, and everything your heart quietly wishes for.";
 
 /* ============================================
-   APPLICATION LOGIC — Do not edit below
-   unless you know what you are changing.
+   APPLICATION LOGIC
    ============================================ */
 
 (function () {
   'use strict';
 
-  // Reduced motion
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) document.body.classList.add('reduced-motion');
 
-  // DOM references
   const $ = (sel) => document.querySelector(sel);
   const $$ = (sel) => document.querySelectorAll(sel);
 
-  // Apply names
   function applyNames() {
     $$('.her-name').forEach(el => el.textContent = birthdayConfig.herName);
     $$('.your-name').forEach(el => el.textContent = birthdayConfig.yourName);
   }
 
-  // Personal message
   function renderMessage() {
     const el = $('#personalMessage');
     if (el) el.innerHTML = personalMessage;
   }
 
-  // Reasons cards
   function renderReasons() {
     const grid = $('#reasonsGrid');
     if (!grid) return;
@@ -119,68 +97,18 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     `).join('');
   }
 
-  // Timeline
   function renderTimeline() {
     const track = $('#timelineTrack');
     if (!track) return;
-    track.innerHTML = memories.map((m, i) => {
-      const imgHtml = m.image
-        ? `<div class="timeline-img"><img src="${m.image}" alt="${m.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'timeline-placeholder\\'>Photo</div>'"></div>`
-        : `<div class="timeline-img"><div class="timeline-placeholder">Photo</div></div>`;
-      return `
-        <div class="timeline-item" data-index="${i}">
-          <div class="timeline-date">${m.date}</div>
-          <div class="timeline-title">${m.title}</div>
-          <div class="timeline-desc">${m.description}</div>
-          ${imgHtml}
-        </div>
-      `;
-    }).join('');
-  }
-
-  // Gallery
-  let currentLightboxIndex = 0;
-
-  function renderGallery() {
-    const grid = $('#galleryGrid');
-    if (!grid) return;
-    grid.innerHTML = gallery.map((item, i) => `
-      <div class="gallery-item" data-index="${i}">
-        <img src="${item.src}" alt="${item.caption}" loading="lazy"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'; this.parentElement.querySelector('.gallery-placeholder').style.display='flex'">
-        <div class="gallery-placeholder" style="display:none">Photo ${i + 1}</div>
-        <div class="overlay"><span class="caption">${item.caption}</span></div>
+    track.innerHTML = memories.map((m, i) => `
+      <div class="timeline-item" data-index="${i}">
+        <div class="timeline-date">${m.date}</div>
+        <div class="timeline-title">${m.title}</div>
+        <div class="timeline-desc">${m.description}</div>
       </div>
     `).join('');
-
-    grid.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', () => openLightbox(+item.dataset.index));
-    });
   }
 
-  function openLightbox(index) {
-    currentLightboxIndex = index;
-    const item = gallery[index];
-    const img = $('#lightboxImg');
-    const caption = $('#lightboxCaption');
-    img.src = item.src;
-    img.alt = item.caption;
-    caption.textContent = item.caption;
-    $('#lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    $('#lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function navigateLightbox(dir) {
-    currentLightboxIndex = (currentLightboxIndex + dir + gallery.length) % gallery.length;
-    openLightbox(currentLightboxIndex);
-  }
-
-  // Birthday moment logic
   function renderMoment() {
     const dateEl = $('#momentDate');
     const msgEl = $('#momentMessage');
@@ -192,9 +120,7 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     bday.setHours(0, 0, 0, 0);
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const formatted = bday.toLocaleDateString('en-US', options);
-
-    dateEl.textContent = formatted;
+    dateEl.textContent = bday.toLocaleDateString('en-US', options);
 
     if (today.getTime() === bday.getTime()) {
       msgEl.textContent = "Today is yours. Make it unforgettable.";
@@ -208,19 +134,16 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     }
   }
 
-  // Secret message
   function renderSecret() {
     const el = $('#secretText');
     if (el) el.innerHTML = secretMessage;
   }
 
-  // Finale wish
   function renderFinale() {
     const el = $('#finaleWish');
     if (el) el.textContent = finaleWish;
   }
 
-  // Particles for intro
   function createParticles(container, count = 40) {
     if (!container || prefersReduced) return;
     for (let i = 0; i < count; i++) {
@@ -235,7 +158,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     }
   }
 
-  // Stars for finale
   function createStars(container, count = 60) {
     if (!container || prefersReduced) return;
     for (let i = 0; i < count; i++) {
@@ -249,7 +171,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     }
   }
 
-  // Burst particles on reveal
   function createBurst() {
     if (prefersReduced) return;
     const container = $('#particleBurst');
@@ -272,18 +193,13 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     }
   }
 
-  // Intersection Observer for scroll reveals
   function setupScrollReveals() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          // Stagger children if needed
-          if (entry.target.classList.contains('reasons-grid') ||
-              entry.target.classList.contains('gallery-grid') ||
-              entry.target.id === 'timelineTrack') {
-            const children = entry.target.children;
-            Array.from(children).forEach((child, i) => {
+          if (entry.target.id === 'timelineTrack' || entry.target.classList.contains('reasons-grid')) {
+            Array.from(entry.target.children).forEach((child, i) => {
               setTimeout(() => child.classList.add('visible'), i * 100);
             });
           }
@@ -291,20 +207,16 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-    $$('.section-heading, .letter-card, .moment-card, .reason-card, .timeline-item, .gallery-item').forEach(el => {
+    $$('.section-heading, .letter-card, .moment-card, .reason-card, .timeline-item').forEach(el => {
       observer.observe(el);
     });
 
-    // Observe grids themselves for staggered children
     const reasonsGrid = $('#reasonsGrid');
-    const galleryGrid = $('#galleryGrid');
     const timelineTrack = $('#timelineTrack');
     if (reasonsGrid) observer.observe(reasonsGrid);
-    if (galleryGrid) observer.observe(galleryGrid);
     if (timelineTrack) observer.observe(timelineTrack);
   }
 
-  // Progress bar
   function updateProgress() {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -313,9 +225,8 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     if (bar) bar.style.width = progress + '%';
   }
 
-  // Nav active state
   function updateNav() {
-    const sections = ['reveal', 'message', 'reasons', 'timeline', 'gallery', 'moment', 'secret', 'finale'];
+    const sections = ['reveal', 'message', 'reasons', 'timeline', 'moment', 'secret', 'finale'];
     let current = '';
     sections.forEach(id => {
       const el = document.getElementById(id);
@@ -326,7 +237,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     });
   }
 
-  // Custom cursor
   function setupCursor() {
     if (window.matchMedia('(hover: none)').matches) return;
     const cursor = $('#cursor');
@@ -352,13 +262,12 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     }
     animateFollower();
 
-    $$('a, button, .gallery-item, .candle, .envelope').forEach(el => {
+    $$('a, button, .candle, .envelope').forEach(el => {
       el.addEventListener('mouseenter', () => follower.classList.add('hover'));
       el.addEventListener('mouseleave', () => follower.classList.remove('hover'));
     });
   }
 
-  // Music
   function setupMusic() {
     const btn = $('#musicBtn');
     const audio = $('#bgMusic');
@@ -381,7 +290,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     });
   }
 
-  // Intro sequence
   function runIntro() {
     const line1 = $('#line1');
     const line2 = $('#line2');
@@ -394,7 +302,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     setTimeout(() => btn && btn.classList.add('show'), 4200);
   }
 
-  // Begin journey
   function setupBegin() {
     const btn = $('#beginBtn');
     if (!btn) return;
@@ -407,18 +314,11 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
         setTimeout(() => {
           reveal.classList.add('active');
           createBurst();
-          setTimeout(() => {
-            const name = $('#revealName');
-            if (name) name.style.transitionDelay = '0s';
-            name && name.classList.add('show');
-            // Force reveal name visibility via the active class already handling it
-          }, 1800);
         }, prefersReduced ? 100 : 800);
       }
     });
   }
 
-  // Envelope
   function setupEnvelope() {
     const btn = $('#openEnvelope');
     const envelope = $('#envelope');
@@ -433,7 +333,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     envelope.addEventListener('click', open);
   }
 
-  // Candle
   function setupCandle() {
     const candle = $('#candle');
     const flame = $('#flame');
@@ -455,7 +354,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     });
   }
 
-  // Finale lines sequence when section enters view
   function setupFinaleSequence() {
     const finale = $('#finale');
     if (!finale) return;
@@ -473,7 +371,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     observer.observe(finale);
   }
 
-  // Mobile nav
   function setupMobileNav() {
     const toggle = $('#navToggle');
     const mobile = $('#navMobile');
@@ -488,7 +385,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     });
   }
 
-  // Smooth nav links
   function setupNavLinks() {
     $$('.nav-links a, .nav-mobile a').forEach(a => {
       a.addEventListener('click', (e) => {
@@ -502,13 +398,11 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     });
   }
 
-  // Replay
   function setupReplay() {
     const btn = $('#replayBtn');
     if (!btn) return;
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
-      // Reset some states optionally
       const envelope = $('#envelope');
       const openBtn = $('#openEnvelope');
       if (envelope) envelope.classList.remove('open');
@@ -524,28 +418,9 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
         wrapper.style.opacity = '';
         wrapper.classList.remove('show');
       }
-      // Re-trigger finale observer would need re-setup; simple reload is cleaner for full reset
-      // For elegance we just scroll up
     });
   }
 
-  // Lightbox controls
-  function setupLightbox() {
-    $('#lightboxClose')?.addEventListener('click', closeLightbox);
-    $('#lightboxPrev')?.addEventListener('click', () => navigateLightbox(-1));
-    $('#lightboxNext')?.addEventListener('click', () => navigateLightbox(1));
-    $('#lightbox')?.addEventListener('click', (e) => {
-      if (e.target.id === 'lightbox') closeLightbox();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (!$('#lightbox')?.classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') navigateLightbox(-1);
-      if (e.key === 'ArrowRight') navigateLightbox(1);
-    });
-  }
-
-  // Scroll effects
   function setupScroll() {
     let ticking = false;
     window.addEventListener('scroll', () => {
@@ -562,7 +437,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     });
   }
 
-  // Loader
   function hideLoader() {
     const loader = $('#loader');
     if (loader) {
@@ -575,13 +449,11 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     }
   }
 
-  // Init
   function init() {
     applyNames();
     renderMessage();
     renderReasons();
     renderTimeline();
-    renderGallery();
     renderMoment();
     renderSecret();
     renderFinale();
@@ -598,7 +470,6 @@ const finaleWish = "May this year give you more reasons to smile, more moments t
     setupMobileNav();
     setupNavLinks();
     setupReplay();
-    setupLightbox();
     setupScroll();
     setupScrollReveals();
 
