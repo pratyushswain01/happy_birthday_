@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A personal birthday journey">
+  <title>For You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Cinematic Loading -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-line"></div>
+      <p class="loader-text">Preparing something special</p>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Progress Indicator -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Floating Music Control -->
+  <button class="music-btn" id="musicBtn" aria-label="Toggle music">
+    <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M9 18V5l12-2v13"/>
+      <circle cx="6" cy="18" r="3"/>
+      <circle cx="18" cy="16" r="3"/>
+    </svg>
+    <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="6" y="4" width="4" height="16"/>
+      <rect x="14" y="4" width="4" height="16"/>
+    </svg>
+  </button>
+  <audio id="bgMusic" loop preload="none">
+    <source src="assets/music/birthday-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">For You</div>
+    <ul class="nav-links">
+      <li><a href="#reveal" data-section="reveal">Reveal</a></li>
+      <li><a href="#message" data-section="message">Message</a></li>
+      <li><a href="#reasons" data-section="reasons">Special</a></li>
+      <li><a href="#timeline" data-section="timeline">Memories</a></li>
+      <li><a href="#gallery" data-section="gallery">Gallery</a></li>
+      <li><a href="#moment" data-section="moment">Moment</a></li>
+      <li><a href="#secret" data-section="secret">Secret</a></li>
+      <li><a href="#finale" data-section="finale">Finale</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <ul>
+      <li><a href="#reveal">Reveal</a></li>
+      <li><a href="#message">Message</a></li>
+      <li><a href="#reasons">Special</a></li>
+      <li><a href="#timeline">Memories</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#moment">Moment</a></li>
+      <li><a href="#secret">Secret</a></li>
+      <li><a href="#finale">Finale</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE 1: Mystery Intro -->
+  <section class="section intro" id="intro">
+    <div class="particles" id="particles"></div>
+    <div class="intro-content">
+      <p class="intro-line" id="line1">Hey...</p>
+      <p class="intro-line" id="line2">There's something I made for you.</p>
+      <p class="intro-line" id="line3">Take a moment.</p>
+      <button class="btn-begin" id="beginBtn">
+        <span>Begin the Journey</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- PAGE 2: The Reveal -->
+  <section class="section reveal" id="reveal">
+    <div class="reveal-content">
+      <p class="reveal-small">Today isn't just another day.</p>
+      <h1 class="reveal-large">Today is <span>YOUR</span> day.</h1>
+      <h2 class="reveal-name" id="revealName">Happy Birthday, <span class="her-name"></span></h2>
+    </div>
+    <div class="particle-burst" id="particleBurst"></div>
+  </section>
+
+  <!-- PAGE 3: Personal Message -->
+  <section class="section message" id="message">
+    <div class="container">
+      <h2 class="section-heading">For Someone Truly Special</h2>
+      <div class="glass-card letter-card">
+        <p class="letter-greeting">Dear <span class="her-name"></span>,</p>
+        <div class="letter-body" id="personalMessage"></div>
+        <p class="letter-sign">With warmth,</p>
+        <p class="letter-from"><span class="your-name"></span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 4: Why You Are Special -->
+  <section class="section reasons" id="reasons">
+    <div class="container">
+      <h2 class="section-heading">A Few Things I Hope You Never Forget...</h2>
+      <div class="reasons-grid" id="reasonsGrid"></div>
+    </div>
+  </section>
+
+  <!-- PAGE 5: Memory Timeline -->
+  <section class="section timeline" id="timeline">
+    <div class="container">
+      <h2 class="section-heading">Little Moments, Big Memories</h2>
+      <div class="timeline-track" id="timelineTrack"></div>
+    </div>
+  </section>
+
+  <!-- PAGE 6: Photo Gallery -->
+  <section class="section gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-heading">Moments Captured</h2>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous">&#10094;</button>
+    <button class="lightbox-next" id="lightboxNext" aria-label="Next">&#10095;</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="">
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </div>
+
+  <!-- PAGE 7: Birthday Moment -->
+  <section class="section moment" id="moment">
+    <div class="container">
+      <h2 class="section-heading">Your Special Day</h2>
+      <div class="moment-card glass-card">
+        <div class="moment-date" id="momentDate"></div>
+        <p class="moment-message" id="momentMessage"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 8: Secret Message -->
+  <section class="section secret" id="secret">
+    <div class="container">
+      <h2 class="section-heading">There's one more thing...</h2>
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-body">
+            <div class="envelope-inner">
+              <p class="secret-text" id="secretText"></p>
+            </div>
+          </div>
+        </div>
+        <button class="btn-open" id="openEnvelope">Open it</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 9: Final Surprise -->
+  <section class="section finale" id="finale">
+    <div class="finale-content">
+      <p class="finale-line" id="finaleLine1">Before you leave...</p>
+      <p class="finale-line" id="finaleLine2">Make one wish.</p>
+      <div class="candle-wrapper" id="candleWrapper">
+        <div class="candle" id="candle">
+          <div class="flame" id="flame"></div>
+          <div class="wick"></div>
+          <div class="candle-body"></div>
+        </div>
+        <p class="candle-hint">Tap the candle</p>
+      </div>
+      <div class="finale-reveal" id="finaleReveal">
+        <h2 class="finale-title">Happy Birthday, <span class="her-name"></span></h2>
+        <p class="finale-wish" id="finaleWish"></p>
+        <p class="finale-close">Stay exactly the wonderful person you are.</p>
+      </div>
+    </div>
+    <div class="stars" id="stars"></div>
+  </section>
+
+  <!-- Signature -->
+  <footer class="signature">
+    <p class="sig-line">Made with a little code,</p>
+    <p class="sig-line">a lot of thought,</p>
+    <p class="sig-line">and an even bigger smile.</p>
+    <p class="sig-from">— <span class="your-name"></span></p>
+    <button class="btn-replay" id="replayBtn">Replay the Journey</button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
