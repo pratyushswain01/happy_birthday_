@@ -7,7 +7,7 @@ const birthdayConfig = {
   herName: "astha",
   yourName: "pratyush",
   birthday: "2026-08-09",          // YYYY-MM-DD
-  music: "/birthday-music.mp3"
+  music: "birthday-music.mp3"
 };
 
 const personalMessage = `
