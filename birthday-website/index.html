@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#1a1210" />
+  <title>Happiest Birthday ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <!-- OPENING OVERLAY -->
+  <div id="opening-overlay" class="opening-overlay">
+    <div class="opening-bg"></div>
+    <div class="opening-content">
+      <p class="opening-eyebrow">For Someone Truly Special…</p>
+      <h1 class="opening-title">I made a little something for you <span>❤️</span></h1>
+      <button id="open-surprise" class="open-btn">
+        <span class="btn-text">Open Your Birthday Surprise</span>
+        <span class="btn-icon">🎁</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating Music Toggle -->
+  <button id="music-toggle" class="music-toggle" aria-label="Toggle music" title="Music">
+    <span class="music-icon">♫</span>
+  </button>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="main-content">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-decor">
+        <span class="doodle crown">👑</span>
+        <span class="doodle heart h1">♡</span>
+        <span class="doodle heart h2">♥</span>
+        <span class="doodle star s1">✦</span>
+        <span class="doodle star s2">✧</span>
+        <span class="doodle butterfly b1">🦋</span>
+        <span class="doodle butterfly b2">🦋</span>
+        <span class="doodle flower f1">🌸</span>
+        <span class="doodle flower f2">🌷</span>
+        <span class="doodle sparkle sp1">✨</span>
+        <span class="doodle sparkle sp2">✨</span>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-portrait-wrap">
+          <div class="polaroid hero-polaroid">
+            <div class="polaroid-inner">
+              <img src="images/photo1.jpg" alt="Beautiful you" class="hero-photo" />
+            </div>
+            <div class="tape tape-tl"></div>
+            <div class="tape tape-tr"></div>
+          </div>
+          <div class="film-strip film-left"></div>
+          <div class="film-strip film-right"></div>
+        </div>
+        <div class="hero-text">
+          <h1 class="hero-title">Happiest Birthday <span>❤️</span></h1>
+          <p class="hero-subtitle">To A Truly Special Soul</p>
+          <p class="hero-note">Today is all about celebrating you.</p>
+        </div>
+      </div>
+      <div class="scroll-hint">
+        <span>Scroll to explore</span>
+        <div class="scroll-arrow">↓</div>
+      </div>
+    </section>
+
+    <!-- LETTER -->
+    <section class="letter-section" id="letter">
+      <div class="letter-container">
+        <div class="letter-paper">
+          <div class="tape tape-top"></div>
+          <div class="letter-content">
+            <p class="letter-greeting">Happiest Birthday! ❤️</p>
+            <p class="letter-body">On this beautiful day, I just want to wish you a life filled with happiness, peace, success, love, and countless beautiful memories.</p>
+            <p class="letter-body">May your smile always remain this beautiful.</p>
+            <p class="letter-body">May every dream you carry in your heart slowly become reality.</p>
+            <p class="letter-body">May every new chapter of your life bring you closer to everything you deserve.</p>
+            <p class="letter-body">Some people unknowingly make the world around them a little brighter just by being themselves.</p>
+            <p class="letter-body">Keep smiling.<br>Keep shining.<br>Keep believing in yourself.</p>
+            <p class="letter-body">And most importantly… never stop being the wonderful person you are.</p>
+            <p class="letter-closing">Wishing you the happiest birthday and an even more beautiful year ahead. ❤️</p>
+          </div>
+          <div class="tape tape-bottom"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section" id="gallery">
+      <div class="section-header">
+        <h2 class="section-title">Beautiful Memories</h2>
+        <p class="section-sub">Little pieces of light</p>
+      </div>
+      <div class="scrapbook">
+        <div class="polaroid-card p1" data-speed="0.8">
+          <div class="polaroid-frame">
+            <img src="images/photo2.jpg" alt="Memory" />
+          </div>
+          <p class="caption">Beautiful Moments ♡</p>
+        </div>
+        <div class="polaroid-card p2" data-speed="1.1">
+          <div class="polaroid-frame">
+            <img src="images/photo3.jpg" alt="Memory" />
+          </div>
+          <p class="caption">That Smile :)</p>
+        </div>
+        <div class="cluster cluster-1">
+          <div class="main-photo">
+            <img src="images/photo1.jpg" alt="You" />
+            <div class="tape t1"></div>
+          </div>
+          <div class="small-photo s1">
+            <img src="images/photo4.jpg" alt="Memory" />
+          </div>
+          <div class="small-photo s2">
+            <img src="images/photo5.jpg" alt="Memory" />
+          </div>
+          <p class="cluster-note">Main Character Energy ✨</p>
+        </div>
+        <div class="filmstrip-wrap">
+          <div class="filmstrip">
+            <div class="film-frame"><img src="images/photo2.jpg" alt="" /></div>
+            <div class="film-frame"><img src="images/photo3.jpg" alt="" /></div>
+            <div class="film-frame"><img src="images/photo4.jpg" alt="" /></div>
+            <div class="film-frame"><img src="images/photo5.jpg" alt="" /></div>
+          </div>
+          <p class="film-caption">Some memories deserve to stay forever.</p>
+        </div>
+        <div class="polaroid-card p3" data-speed="0.9">
+          <div class="polaroid-frame circle">
+            <img src="images/photo6.jpg" alt="Memory" />
+          </div>
+          <p class="caption">Simply You ❤️</p>
+        </div>
+        <div class="polaroid-card p4" data-speed="1.2">
+          <div class="polaroid-frame">
+            <img src="images/photo1.jpg" alt="Memory" />
+          </div>
+          <p class="caption">Keep Shining ✨</p>
+        </div>
+        <div class="note-card">
+          <p>One beautiful soul.</p>
+          <p class="small">More smiles. More happiness. More success.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOODLE WALL -->
+    <section class="doodle-wall" id="doodle-wall">
+      <div class="wall-paper"></div>
+      <div class="wall-content">
+        <h2 class="wall-title">Birthday Diary</h2>
+        <div class="notes-grid">
+          <div class="sticky-note n1">Same kind heart. Always.</div>
+          <div class="sticky-note n2">More Smiles</div>
+          <div class="sticky-note n3">More Success</div>
+          <div class="sticky-note n4">More Happiness</div>
+          <div class="sticky-note n5">More Adventures</div>
+          <div class="sticky-note n6">More Beautiful Memories</div>
+          <div class="sticky-note n7 long">A heart full of kindness.<br>A mind full of dreams.<br>A soul that inspires.</div>
+          <div class="sticky-note n8">Keep Shining Always ♡</div>
+          <div class="sticky-note n9">Good people make the world brighter.</div>
+          <div class="sticky-note n10">You are special ♡</div>
+          <div class="sticky-note n11">Stay Blessed.</div>
+          <div class="sticky-note n12">Bigger Dreams</div>
+          <div class="sticky-note n13">Brighter Days</div>
+          <div class="sticky-note n14">Happier You</div>
+          <div class="sticky-note n15">Success Always</div>
+        </div>
+        <div class="wall-photos">
+          <div class="wall-polaroid">
+            <img src="images/photo3.jpg" alt="You" />
+          </div>
+          <div class="wall-polaroid tilt">
+            <img src="images/photo5.jpg" alt="You" />
+          </div>
+        </div>
+        <div class="wall-doodles">
+          <span class="wd heart">♡</span>
+          <span class="wd star">✦</span>
+          <span class="wd butterfly">🦋</span>
+          <span class="wd flower">🌸</span>
+          <span class="wd arrow">→</span>
+          <span class="wd heart2">♥</span>
+          <span class="wd star2">✧</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTO REVEAL -->
+    <section class="reveal-section" id="reveal">
+      <h2 class="reveal-title">A Few Beautiful Frames…</h2>
+      <div class="reveal-stage">
+        <div class="reveal-slide active" data-index="0">
+          <img src="images/photo1.jpg" alt="Frame 1" />
+          <div class="reveal-caption">Some moments don’t need captions.</div>
+        </div>
+        <div class="reveal-slide" data-index="1">
+          <img src="images/photo2.jpg" alt="Frame 2" />
+          <div class="reveal-caption">Just a beautiful memory…</div>
+        </div>
+        <div class="reveal-slide" data-index="2">
+          <img src="images/photo4.jpg" alt="Frame 3" />
+          <div class="reveal-caption">And another one worth keeping.</div>
+        </div>
+        <div class="reveal-slide" data-index="3">
+          <img src="images/photo6.jpg" alt="Frame 4" />
+          <div class="reveal-caption">You, in every light.</div>
+        </div>
+      </div>
+      <div class="reveal-progress">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <!-- ENVELOPE CARD -->
+    <section class="card-section" id="card">
+      <div class="envelope-wrap">
+        <p class="envelope-label">A little note for you 💌</p>
+        <div class="envelope" id="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-body"></div>
+          <div class="envelope-letter" id="letter-card">
+            <p>May this year bring you the kind of happiness that stays,<br>
+            the kind of success that makes you proud,<br>
+            and the kind of memories that you will always smile about.</p>
+            <p class="letter-sign">Happiest Birthday ❤️</p>
+          </div>
+        </div>
+        <p class="envelope-hint">Tap to open</p>
+      </div>
+    </section>
+
+    <!-- CAKE -->
+    <section class="cake-section" id="cake">
+      <div class="cake-container">
+        <h2 class="cake-title">Make A Wish 🎂</h2>
+        <div class="cake" id="birthday-cake">
+          <div class="cake-top">
+            <div class="candle c1"><div class="flame"></div><div class="wick"></div></div>
+            <div class="candle c2"><div class="flame"></div><div class="wick"></div></div>
+            <div class="candle c3"><div class="flame"></div><div class="wick"></div></div>
+            <div class="candle c4"><div class="flame"></div><div class="wick"></div></div>
+            <div class="candle c5"><div class="flame"></div><div class="wick"></div></div>
+          </div>
+          <div class="cake-layer layer3"></div>
+          <div class="cake-layer layer2"></div>
+          <div class="cake-layer layer1"></div>
+          <div class="cake-plate"></div>
+        </div>
+        <button id="blow-candles" class="blow-btn">Blow The Candles ✨</button>
+        <p class="wish-reveal" id="wish-reveal">May Your Wish Come True ❤️</p>
+      </div>
+    </section>
+
+    <!-- AMAZING -->
+    <section class="amazing-section" id="amazing">
+      <h2 class="amazing-heading">You Are</h2>
+      <div class="amazing-word">
+        <div class="letter-block">
+          <span class="big-letter">A</span>
+          <span class="meaning">Adorable ♡</span>
+        </div>
+        <div class="letter-block">
+          <span class="big-letter">M</span>
+          <span class="meaning">Motivating</span>
+        </div>
+        <div class="letter-block">
+          <span class="big-letter">A</span>
+          <span class="meaning">Amazing</span>
+        </div>
+        <div class="letter-block">
+          <span class="big-letter">Z</span>
+          <span class="meaning">Zestful</span>
+        </div>
+        <div class="letter-block">
+          <span class="big-letter">I</span>
+          <span class="meaning">Inspiring</span>
+        </div>
+        <div class="letter-block">
+          <span class="big-letter">N</span>
+          <span class="meaning">Nice</span>
+        </div>
+        <div class="letter-block">
+          <span class="big-letter">G</span>
+          <span class="meaning">Genuine ♡</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline-section" id="timeline">
+      <h2 class="timeline-title">Little Moments. Beautiful Memories.</h2>
+      <div class="timeline">
+        <div class="timeline-line"></div>
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <img src="images/photo2.jpg" alt="Moment" />
+            <p class="tl-label">Smiles</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-card">
+            <img src="images/photo3.jpg" alt="Moment" />
+            <p class="tl-label">Memories</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <img src="images/photo4.jpg" alt="Moment" />
+            <p class="tl-label">Moments</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-card">
+            <img src="images/photo5.jpg" alt="Moment" />
+            <p class="tl-label">Beautiful Days</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-card">
+            <img src="images/photo6.jpg" alt="Moment" />
+            <p class="tl-label">Worth Remembering</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINALE -->
+    <section class="finale" id="finale">
+      <div class="finale-bg"></div>
+      <div class="finale-lights"></div>
+      <div class="finale-content">
+        <div class="finale-photo">
+          <img src="images/photo1.jpg" alt="You" />
+        </div>
+        <div class="finale-text">
+          <h2 class="finale-line l1">HAPPIEST BIRTHDAY ❤️</h2>
+          <p class="finale-line l2">May your smile shine forever.</p>
+          <p class="finale-line l3">May this new chapter be even more beautiful than the last.</p>
+          <p class="finale-line l4">Stay Happy.<br>Stay Blessed.<br>Keep Shining. ✨</p>
+          <p class="finale-line l5">Once Again…</p>
+          <h2 class="finale-line l6">HAPPIEST BIRTHDAY 🎂❤️</h2>
+        </div>
+      </div>
+      <div class="floating-hearts" id="floating-hearts"></div>
+    </section>
+
+    <!-- SECRET -->
+    <section class="secret-section" id="secret">
+      <button id="secret-btn" class="secret-btn">One Last Surprise…</button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>Made with lots of effort, memories & good wishes ❤️</p>
+      <p class="footer-sub">For your special day.</p>
+    </footer>
+  </main>
+
+  <!-- SECRET MODAL -->
+  <div id="secret-modal" class="secret-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">×</button>
+      <div class="modal-photo">
+        <img src="images/photo1.jpg" alt="Special" />
+      </div>
+      <p class="modal-text">Thank you for being exactly who you are. ❤️</p>
+      <div class="modal-hearts"></div>
+    </div>
+  </div>
+
+  <canvas id="trail-canvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
